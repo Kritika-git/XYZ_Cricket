@@ -12,6 +12,7 @@ function Navbar() {
           {/* Anchor links for About and Tournaments sections */}
           <a href="#about" className="text-white hover:text-gray-300">About</a>
           <a href="#tournaments" className="text-white hover:text-gray-300">Tournaments</a>
+          <Link to="/Registration" className="text-white hover:text-gray-300">Registration</Link>
         </div>
       </div>
     </nav>
