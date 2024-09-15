@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Step 1: Team Information
+
 const TeamInfo = ({ formData, setFormData, nextStep }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -98,7 +98,7 @@ const TeamInfo = ({ formData, setFormData, nextStep }) => {
   );
 };
 
-// Step 2: Captain's Information
+
 const CaptainInfo = ({ formData, setFormData, prevStep, nextStep }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -193,166 +193,119 @@ const CaptainInfo = ({ formData, setFormData, prevStep, nextStep }) => {
   );
 };
 
-// Step 3: Team Players' Information
+
 const PlayerDetails = ({ formData, setFormData, prevStep, nextStep }) => {
-  const handlePlayerChange = (index, e) => {
-    const { name, value } = e.target;
-    const players = [...formData.players];
-    players[index] = { ...players[index], [name]: value };
-    setFormData({ ...formData, players });
-  };
-
-  const addPlayer = () => {
-    setFormData({
-      ...formData,
-      players: [...formData.players, { playerName: '', role: '', age: '', tshirtSize: '' }],
-    });
-  };
-
-  return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Team Players' Information</h2>
-      {formData.players.map((player, index) => (
-        <div key={index} className="mb-4">
-          <div className="mb-2">
-            <label className="block text-gray-700">Player {index + 1} Name</label>
-            <input
-              type="text"
-              name="playerName"
-              value={player.playerName}
-              onChange={(e) => handlePlayerChange(index, e)}
-              className="w-full p-2 border border-gray-300 rounded mt-1"
-            />
-          </div>
-          <div className="mb-2">
-            <label className="block text-gray-700">Player Role</label>
-            <input
-              type="text"
-              name="role"
-              value={player.role}
-              onChange={(e) => handlePlayerChange(index, e)}
-              className="w-full p-2 border border-gray-300 rounded mt-1"
-            />
-          </div>
-          <div className="mb-2">
-            <label className="block text-gray-700">Age</label>
-            <input
-              type="text"
-              name="age"
-              value={player.age}
-              onChange={(e) => handlePlayerChange(index, e)}
-              className="w-full p-2 border border-gray-300 rounded mt-1"
-            />
-          </div>
-          <div className="mb-2">
-            <label className="block text-gray-700">T-shirt Size</label>
-            <input
-              type="text"
-              name="tshirtSize"
-              value={player.tshirtSize}
-              onChange={(e) => handlePlayerChange(index, e)}
-              className="w-full p-2 border border-gray-300 rounded mt-1"
-            />
-          </div>
-        </div>
-      ))}
-      <button
-        onClick={addPlayer}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4"
-      >
-        Add Player
-      </button>
-      <div className="flex justify-between">
-        <button
-          onClick={prevStep}
-          className="bg-gray-500 text-white px-4           py-2 rounded hover:bg-gray-600"
-        >
-          Previous
-        </button>
-        <button
-          onClick={nextStep}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Next
-        </button>
-      </div>
-    </div>
-  );
-};
-
-// Step 4: Match Preferences
-const MatchPreferences = ({ formData, setFormData, prevStep, nextStep }) => {
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Match Preferences</h2>
-      <div className="mb-4">
-        <label className="block text-gray-700">Preferred Match Days</label>
+    const handlePlayerChange = (index, e) => {
+      const { name, value } = e.target;
+      const players = [...formData.players];
+      players[index] = { ...players[index], [name]: value };
+      setFormData({ ...formData, players });
+    };
+  
+    const addPlayer = () => {
+      if (formData.players.length < 15) {
+        setFormData({
+          ...formData,
+          players: [...formData.players, { playerName: '', role: '', age: '', tshirtSize: '' }],
+        });
+      }
+    };
+  
+    const canProceed = formData.players.length >= 11;
+  
+    return (
+      <div className="p-4">
+        <h2 className="text-xl font-semibold mb-4">Team Players' Information</h2>
+        {formData.players.map((player, index) => (
+          <div key={index} className="mb-4">
+            <div className="mb-2">
+              <label className="block text-gray-700">Player {index + 1} Name</label>
+              <input
+                type="text"
+                name="playerName"
+                value={player.playerName}
+                onChange={(e) => handlePlayerChange(index, e)}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+              />
+            </div>
+            <div className="mb-2">
+              <label className="block text-gray-700">Player Role</label>
+              <input
+                type="text"
+                name="role"
+                value={player.role}
+                onChange={(e) => handlePlayerChange(index, e)}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+              />
+            </div>
+            <div className="mb-2">
+              <label className="block text-gray-700">Age</label>
+              <input
+                type="text"
+                name="age"
+                value={player.age}
+                onChange={(e) => handlePlayerChange(index, e)}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+              />
+            </div>
+            {/* <div className="mb-2">
+              <label className="block text-gray-700">T-shirt Size</label>
+              <input
+                type="text"
+                name="tshirtSize"
+                value={player.tshirtSize}
+                onChange={(e) => handlePlayerChange(index, e)}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+              />
+            </div> */}
+            <div className="mb-4">
+        <label className="block text-gray-700">T-shirt Size</label>
         <select
-          name="matchDays"
-          value={formData.matchDays}
-          onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
+            name="TshirtSize"
+            value={player.tshirtSize}
+            onChange={(e) => handlePlayerChange(index, e)}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
         >
-          <option value="">Select</option>
-          <option value="Weekends">Weekends</option>
-          <option value="Weekdays">Weekdays</option>
-          <option value="No Preference">No Preference</option>
+            <option value="">Select T-shirt size</option> {/* Placeholder option */}
+            <option value="S">Small (S)</option>
+            <option value="M">Medium (M)</option>
+            <option value="L">Large (L)</option>
+            <option value="XL">Extra Large (XL)</option>
+            <option value="XXL">Double Extra Large (XXL)</option>
         </select>
       </div>
-      <div className="mb-4">
-        <label className="block text-gray-700">Home Ground</label>
-        <input
-          type="text"
-          name="homeGround"
-          value={formData.homeGround}
-          onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700">Playing Kit Colors (optional)</label>
-        <input
-          type="text"
-          name="kitColors"
-          value={formData.kitColors}
-          onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700">Medical Details (if any)</label>
-        <textarea
-          name="medicalDetails"
-          value={formData.medicalDetails}
-          onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          rows="3"
-        />
-      </div>
-      <div className="flex justify-between">
+          </div>
+        ))}
         <button
-          onClick={prevStep}
-          className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+          onClick={addPlayer}
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4"
+          disabled={formData.players.length >= 15}
         >
-          Previous
+          Add Player
         </button>
-        <button
-          onClick={nextStep}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Next
-        </button>
+        <div className="flex justify-between">
+          <button
+            onClick={prevStep}
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+          >
+            Previous
+          </button>
+          <button
+            onClick={canProceed ? nextStep : undefined}
+            className={`px-4 py-2 rounded ${
+              canProceed ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-blue-300 text-gray-600 cursor-not-allowed'
+            }`}
+            disabled={!canProceed}
+          >
+            Next
+          </button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+  
 
-// Step 5: Payment Details
+
 const PaymentDetails = ({ formData, setFormData, prevStep, nextStep }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -428,7 +381,7 @@ const PaymentDetails = ({ formData, setFormData, prevStep, nextStep }) => {
   );
 };
 
-// Step 6: Review & Submit
+
 const ReviewSubmit = ({ formData, prevStep, submitForm }) => {
   return (
     <div className="p-4">
@@ -457,12 +410,6 @@ const ReviewSubmit = ({ formData, prevStep, submitForm }) => {
         </div>
       ))}
       
-      <h3 className="text-lg font-semibold mt-4 mb-2">Match Preferences</h3>
-      <p><strong>Preferred Match Days:</strong> {formData.matchDays}</p>
-      <p><strong>Home Ground:</strong> {formData.homeGround}</p>
-      <p><strong>Playing Kit Colors:</strong> {formData.kitColors}</p>
-      <p><strong>Medical Details:</strong> {formData.medicalDetails}</p>
-
       <h3 className="text-lg font-semibold mt-4 mb-2">Payment Details</h3>
       <p><strong>Registration Fee:</strong> {formData.registrationFee}</p>
       <p><strong>Payment Method:</strong> {formData.paymentMethod}</p>
@@ -504,7 +451,7 @@ const ReviewSubmit = ({ formData, prevStep, submitForm }) => {
   );
 };
 
-// Main Form Component
+
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -520,10 +467,6 @@ const MultiStepForm = () => {
     captainTshirtSize: '',
     emergencyContact: '',
     players: [{ playerName: '', role: '', age: '', tshirtSize: '' }],
-    matchDays: '',
-    homeGround: '',
-    kitColors: '',
-    medicalDetails: '',
     registrationFee: '',
     paymentMethod: '',
     paymentReference: '',
@@ -531,35 +474,35 @@ const MultiStepForm = () => {
     terms: false,
     liabilityWaiver: false,
   });
-
+  
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
-
   const submitForm = () => {
-    const formToSubmit = {
-      teamName: formData.teamName,
-      captainName: formData.captainName,
-      players: formData.players,
-      category: formData.category,
-      // Include other form data fields as needed
-    };
+    const dataToSubmit = new FormData();
+    Object.keys(formData).forEach(key => {
+      if (Array.isArray(formData[key])) {
+        formData[key].forEach((item, index) => {
+          Object.keys(item).forEach(subKey => {
+            dataToSubmit.append(`${key}[${index}][${subKey}]`, item[subKey]);
+          });
+        });
+      } else {
+        dataToSubmit.append(key, formData[key]);
+      }
+    });
 
-    // Send POST request to the server
-    fetch('https://api.example.com/register', {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formToSubmit),  // Convert form data to JSON
+      body: dataToSubmit,
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);  // Handle success response
-        // You can add a success message or redirect here
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        alert('Form submitted successfully!');
       })
       .catch((error) => {
-        console.error('Error:', error);  // Handle any errors
-        // Show error message to user if needed
+        console.error('Error:', error);
+        alert('An error occurred while submitting the form.');
       });
   };
 
@@ -571,10 +514,8 @@ const MultiStepForm = () => {
     case 3:
       return <PlayerDetails formData={formData} setFormData={setFormData} prevStep={prevStep} nextStep={nextStep} />;
     case 4:
-      return <MatchPreferences formData={formData} setFormData={setFormData} prevStep={prevStep} nextStep={nextStep} />;
-    case 5:
       return <PaymentDetails formData={formData} setFormData={setFormData} prevStep={prevStep} nextStep={nextStep} />;
-    case 6:
+    case 5:
       return <ReviewSubmit formData={formData} prevStep={prevStep} submitForm={submitForm} />;
     default:
       return <div>Unknown step</div>;
