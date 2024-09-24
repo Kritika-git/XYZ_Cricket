@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const TeamInfo = ({ formData, setFormData, nextStep }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -261,7 +260,8 @@ const PlayerDetails = ({ formData, setFormData, prevStep, nextStep }) => {
             <div className="mb-4">
         <label className="block text-gray-700">T-shirt Size</label>
         <select
-            name="TshirtSize"
+            type="text"
+            name="tshirtSize"
             value={player.tshirtSize}
             onChange={(e) => handlePlayerChange(index, e)}
             className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -454,6 +454,7 @@ const ReviewSubmit = ({ formData, prevStep, submitForm }) => {
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     teamName: '',
     teamLogo: null,
@@ -477,6 +478,7 @@ const MultiStepForm = () => {
   
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
+
   const submitForm = () => {
     const dataToSubmit = new FormData();
     Object.keys(formData).forEach(key => {
@@ -498,14 +500,26 @@ const MultiStepForm = () => {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        alert('Form submitted successfully!');
+        setIsSubmitted(true); // Set the form as submitted on success
       })
       .catch((error) => {
         console.error('Error:', error);
         alert('An error occurred while submitting the form.');
       });
   };
-
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="bg-white p-24 rounded-lg shadow-lg text-center">
+          <h1 className="text-3xl font-bold text-green-600 mb-4">Form Submitted Successfully!</h1>
+          <p className="text-lg text-gray-700">Thank you for registering for the event.</p>
+          <p className="text-lg text-gray-700">We have received your submission.</p>
+          <p className="text-lg text-gray-700"> Further details of the match will be sent to the captain's email. Please keep an eye on your inbox for updates.</p>
+        </div>
+      </div>
+    );
+  }
+ 
   switch (step) {
     case 1:
       return <TeamInfo formData={formData} setFormData={setFormData} nextStep={nextStep} />;
@@ -523,4 +537,9 @@ const MultiStepForm = () => {
 };
 
 export default MultiStepForm;
+
+
+
+
+
 
