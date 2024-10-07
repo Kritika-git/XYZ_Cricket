@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      padding: {
+        '9/16': '56.25%' // 16:9 aspect ratio
+      }
+    },
   },
   plugins: [],
 }
