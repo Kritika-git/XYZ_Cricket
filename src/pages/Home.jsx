@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div>
+    <div> 
       {/* Hero Section */}
-      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url('/Cricket-hero.png')` }}>
+      <section
+        className="relative h-screen bg-cover bg-center"
+        style={{ backgroundImage: `url('/cricket-hero3.avif')` }}
+      >
         <div className="flex items-center justify-center h-full bg-black bg-opacity-60">
           <div className="text-center text-white p-8 md:p-12">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to XYZ Organization</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to CricketSphere</h1>
             <p className="text-lg md:text-2xl">We organize thrilling cricket tournaments in various formats.</p>
           </div>
         </div>
@@ -20,9 +23,7 @@ function Home() {
         <h2 className="text-3xl font-bold mb-8 text-gray-800">Upcoming Tournaments</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Tournament Card 1 */}
-          <Link to="/pages/T20ChampionshipDetails" className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 block">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">T20 Championship</h3>
-            <p className="text-gray-700">Date: November 18 - November 26 , 2024</p>
+          
          
           <Link to="/pages/t20-championship" className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 block">
             <h3 className="text-xl font-semibold mb-2 text-gray-800">T20 Championship Under 18 (Boys)</h3>
@@ -37,16 +38,16 @@ function Home() {
             <p className="text-gray-600">Join the fast-paced T20 tournament and showcase your cricketing skills!</p>
           </Link>
           {/* Tournament Card 2 */}
-          <Link to="/pages/ODILeagueDetails" className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 block">
+          <Link to="/pages/odi-league" className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 block">
             <h3 className="text-xl font-semibold mb-2 text-gray-800">ODI League</h3>
-            <p className="text-gray-700">Date: December 2 - December 8 , 2024</p>
+            <p className="text-gray-700">Date: December 2 - December 8</p>
             <p className="text-gray-700">Location: Chennai</p>
             <p className="text-gray-600">Experience the excitement of One Day Internationals in our ODI League.</p>
           </Link>
           {/* Tournament Card 3 */}
-          <Link to="/pages/TestMatchSeriesDetails" className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 block">
+          <Link to="/pages/test-match-series" className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 block">
             <h3 className="text-xl font-semibold mb-2 text-gray-800">Test Match Series</h3>
-            <p className="text-gray-700">Date: December 5 - December 20 , 2024</p>
+            <p className="text-gray-700">Date: December 5-20, 2024</p>
             <p className="text-gray-700">Location: Delhi</p>
             <p className="text-gray-600">Participate in the classic format of cricket with our Test Match Series.</p>
           </Link>
@@ -59,7 +60,7 @@ function Home() {
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1">
             <p className="mb-4 text-gray-700">
-              At XYZ Organization, we are passionate about cricket and dedicated to fostering its growth and development. Our mission is to promote the sport by organizing a variety of cricket tournaments that cater to players of all skill levels.
+              At CricketSphere, we are passionate about cricket and dedicated to fostering its growth and development. Our mission is to promote the sport by organizing a variety of cricket tournaments that cater to players of all skill levels.
             </p>
             <p className="mb-4 text-gray-700">
               We believe in the power of cricket to bring people together, create lasting memories, and inspire greatness. Whether you're a budding cricketer, a seasoned player, or a dedicated fan, we strive to provide opportunities for everyone to experience the thrill of the game.

@@ -29,7 +29,7 @@ const Footer = () => {
           {/* Contact Us Information */}
           <div>
             <h3 className="text-2xl font-bold mb-4 text-gray-300">Contact Us</h3>
-            <p className="mb-2">Email: <a href="mailto:info@xyzorganization.com" className="text-blue-400 hover:underline">info@xyzorganization.com</a></p>
+            <p className="mb-2">Email: <a href="mailto:info@cricketsphere.com" className="text-blue-400 hover:underline">info@xyzorganization.com</a></p>
             <p className="mb-2">Phone: <a href="tel:+1234567890" className="text-blue-400 hover:underline">+91 810-456-7890</a></p>
             <p className="mb-2">Address: 123 Cricket Lane, Kolkata</p>
           </div>
